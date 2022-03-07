@@ -1,22 +1,13 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 
-import { usePrevious } from "../utils";
 
 export default function TodoItem(props) {
   const [isEditing, setEditing] = useState(false);
   const [newName, setNewName] = useState("");
-  const wasEditing = usePrevious(isEditing);
 
   const focusTargetRef = useRef(null);
 
-  // Will manage focus every time the `wasEditing` const changes
-  useEffect(() => {
-    // Only execute after the first load,
-    // and when the editing state has changed
-    if (wasEditing !== undefined && wasEditing !== isEditing) {
-      focusTargetRef.current.focus();
-    }
-  }, [wasEditing, isEditing]);
+ 
 
   function handleChange(e) {
     setNewName(e.target.value);

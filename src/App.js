@@ -1,13 +1,12 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import {nanoid} from "nanoid";
 
 import FilterButton from "./components/FilterButton";
 import TodoForm from "./components/TodoForm";
 import TodoItem from "./components/TodoItem";
 
-import { usePrevious } from "./utils";
 
 const FILTER_MAP = {
   All: () => true,
@@ -20,7 +19,6 @@ const FILTER_NAMES = Object.keys(FILTER_MAP);
 function App(props) {
   const [filter, setFilter] = useState("All");
   const [tasks, setTasks] = useState(props.tasks);
-  const prevTaskLength = usePrevious(tasks.length);
 
   const listHeadingRef = useRef(null);
 
@@ -77,11 +75,7 @@ function App(props) {
     setTasks(editedTaskList);
   }
 
-  useEffect(() => {
-    if (tasks.length - prevTaskLength === -1) {
-      listHeadingRef.current.focus();
-    }
-  }, [tasks.length, prevTaskLength]);
+  
 
   const tasksNoun = taskList.length !== 1 ? "tasks" : "task";
   const headingText = `${taskList.length} ${tasksNoun} remaining`;
