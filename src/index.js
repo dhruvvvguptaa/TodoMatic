@@ -1,17 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+import "./index.css";
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+import App from "./App";
+
+const DATA = [
+  { id: "task-0", name: "Eat", completed: true },
+  { id: "task-1", name: "Sleep", completed: false },
+  { id: "task-2", name: "Repeat", completed: false }
+];
+
+ReactDOM.render(<App tasks={DATA} />, document.getElementById("root"));
